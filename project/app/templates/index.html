@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>TURF - BOOKING</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static  'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static  'css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static  'css/templatemo-scholar.css' %}">
+    <link rel="stylesheet" href="{% static  'css/owl.css' %}">
+    <link rel="stylesheet" href="{% static  'css/animate.css' %}">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+  </head>
+
+<body>
+  {% if messages %}
+  <script>alert( 'your turf has been successfully booked...' )</script>
+  {% endif %}
+
+  <!-- ***** Preloader Start ***** -->
+  {% comment %} <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div> {% endcomment %}
+  <!-- ***** Preloader End ***** -->
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <h1>&#9971; TURF &#9971;</h1>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Serach Start ***** -->
+                    {% comment %} <div class="search-input">
+                      <form id="search" action="#">
+                        <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
+                        <i class="fa fa-search"></i>
+                      </form>
+                    </div> {% endcomment %}
+                    <!-- ***** Serach Start ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    {% comment %} <ul class="nav">
+                      <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                      <li class="scroll-to-section"><a href="#services">Services</a></li>
+                      <li class="scroll-to-section"><a href="#courses">Courses</a></li>
+                      <li class="scroll-to-section"><a href="#team">Team</a></li>
+                      <li class="scroll-to-section"><a href="#events">Events</a></li>
+                      <li class="scroll-to-section"><a href="#contact">Register Now!</a></li>
+                  </ul>    {% endcomment %}
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner" id="top">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="owl-carousel owl-banner">
+            <div class="item item-1">
+              <div class="header-text">
+                <span class="category">WELCOME &#129310;</span>
+                <h2>welcome to our turf..</h2>
+                <div class="buttons">
+                  <div class="main-button">
+                    {% comment %} <a href="#">Request Demo</a> {% endcomment %}
+                  </div>
+                  <div class="icon-button">
+                    {% comment %} <a href="#"><i class="fa fa-play"></i> What's Scholar?</a> {% endcomment %}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% block content %}
+  <div class="services section" id="services">
+    <div class="container">
+      <div class="row">
+        {% for i in turfd %}
+        <div class="col-lg-4 col-md-6">
+          <div class="service-item">
+            <div class="icon">
+              <img src="{% static  'images/service-01.png' %}" alt="online degrees">
+            </div>
+            <div class="main-content">
+              <h4>TURF NAME: {{ i.turfname }}</h4>
+              <h4>TURF LOCATION: {{ i.turfarea }}</h4>
+              <img src='{{ i.turfpic.url }}' >
+              <div class="main-button">
+                <a href="{% url 'turfpage' id=i.id %}">Check Availability</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+      </div>
+    </div>
+  </div>
+
+  
+
+{% endblock %}
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static  'jquery/jquery.min.js' %}"></script>
+  <script src="{% static  'bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static  'js/isotope.min.js' %}"></script>
+  <script src="{% static  'js/owl-carousel.js' %}"></script>
+  <script src="{% static  'js/counter.js' %}"></script>
+  <script src="{% static  'js/custom.js' %}"></script>
+
+  </body>
+</html>

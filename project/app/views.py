@@ -2,6 +2,10 @@ from django.shortcuts import render,redirect,HttpResponse
 from .models import *
 from datetime import datetime,timedelta
 from django.contrib import messages
+
+
+from django.conf import settings
+from django.core.mail import send_mail
 # Create your views here.
 
 def index(request):
@@ -56,7 +60,6 @@ def turf_book(request,id):
                     l.append(i.timings)
           print(l)
                     
-          print("the datas are guru :",bookdata)
           context={'data':data,
                    'date':id,
                    'l':l,
@@ -83,6 +86,14 @@ def turfslot(request):
                     tb.timings=request.session['time']
                     tb.status='BOOKED'
                     tb.save()
+                    subject = 'Your TURF booked successfully'
+                    message = str(f'Hi {tb.register_name}, thank you for registering in The Turf, \n ' 
+                    f' Turf name: {tb.turfname}, \n '
+                    f' Turf Date : {tb.date}, \n ' 
+                    f' Turf Timing :{tb.timings} ,\n ' )
+                    email_from = settings.EMAIL_HOST_USER
+                    recipient_list = [request.POST.get('email') ]
+                    send_mail( subject, message, email_from, recipient_list )
                     messages.success(request,'turf saved successfully..')
                     return redirect('index')
           
